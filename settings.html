@@ -1,0 +1,361 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+  --black: #333333;
+  --gray: #bbbbbb;
+  --gray-dark: #7a7a7a;
+  --blue-dark: #1c5291;
+  --blue-light: #386fd6;
+  --yellow: #f7c41c;
+  --red: #ed2e2e;
+  --orange: #ff8127;
+  --green: #00b8cc;
+  --footer: #003364;
+}
+
+.info a.active {
+  border-bottom: 4px solid white;
+}
+
+.slice {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: left 0.5s ease-in-out;
+}
+
+.slice.active {
+  left: 0;
+}
+
+.slice.previous {
+  left: -100%;
+}
+
+.content {
+  display: none;
+}
+
+.slice-act {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: left 0.5s ease-in-out;
+}
+
+.slice-act.active {
+  left: 0;
+}
+
+.slice-act.previous {
+  left: -100%;
+}
+
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div
+      class="header-container w-full h-[57px] flex justify-center items-center text-black"
+    >
+      <div
+        class="header-content w-[1024px] h-full flex justify-between items-center"
+      >
+        <div class="languages">
+          <a href="" class="text-[16px] text-[var(--black)]"> VN </a>
+          |
+          <a href="" class="text-[16px] text-[var(--gray)]"> EN </a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <a href="./index.html"
+            ><img src="./assets/img/logo-hutech.png" alt="Logo 1" class="h-8"
+          /></a>
+        </div>
+
+        <div class="relative inline-block text-left">
+          <div>
+              <button onclick="toggleDropdown()" class="justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Tài khoản
+              </button>
+          </div>
+          <div id="dropdown" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 hidden">
+              <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <a href="./profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Thông tin cá nhân</a>
+                  <a href="./settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Thiết lập cá nhân</a>
+                  <a href="./logout.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Đăng xuất tài khoản</a>
+              </div>
+          </div>
+      </div>
+      </div>
+    
+    </div>
+
+    <!-- Navigate -->
+    <div
+      class="navigate-container w-full h-[42px] bg-[var(--blue-dark)] flex justify-center items-center text-black"
+    >
+      <div
+        class="navigate-content w-[1024px] h-full flex justify-center items-center"
+      >
+        <div
+          class="info flex justify-center items-center gap-[50px] text-white"
+          id="navigation"
+        >
+          <a
+            href="index.html"
+            class="py-[7px] text-[16px] text-white hover:underline"            
+          >
+            TRANG CHỦ
+          </a>
+
+          <a
+            href="lichhen.html"
+            class="py-[7px] text-[16px] text-white hover:underline"
+          >
+            LỊCH HẸN CỦA BẠN
+          </a>
+
+          <a
+            href="lichsudatlich.html"
+            class="py-[7px] text-[16px] text-white hover:underline"
+          >
+            LỊCH SỬ ĐẶT HẸN
+          </a>
+
+          <a
+            href="chungnhan.html"
+            class="py-[7px] text-[16px] text-white hover:underline" 
+          >
+            CHỨNG NHẬN
+          </a>
+
+          <a
+            href="hoidap.html"
+            class="py-[7px] text-[16px] text-white hover:underline"
+          >
+            HỎI - ĐÁP
+          </a>
+
+          <a
+            href="tintuc.html"
+            class="py-[7px] text-[16px] text-white hover:underline"
+          >
+            TIN TỨC
+          </a>
+          <a
+            href="lienhe.html"
+            class="py-[7px] text-[16px] text-white hover:underline"
+          >
+            LIÊN HỆ
+          </a>
+        </div>
+      </div>
+    </div>
+    <p>
+    <div class="flex flex-col items-center justify-center min-h-screen">
+  <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+    <h2 class="text-center text-2xl font-semibold text-zinc-800">THIẾT LẬP CÁ NHÂN</h2>
+    <div class="mt-4 p-4 bg-zinc-50 rounded-lg shadow-sm">
+      <div class="flex items-center mb-4">
+        <img aria-hidden="true" alt="bell icon" src="https://placehold.co/20x20" class="mr-2">
+        <h3 class="text-lg font-semibold text-blue-600">QUẢN LÝ THÔNG BÁO</h3>
+      </div>
+      <div class="flex items-center mb-2">
+        <input type="checkbox" id="sms" class="toggle-checkbox hidden" checked>
+        <label for="sms" class="toggle-label flex items-center cursor-pointer">
+          <span class="toggle-slider bg-blue-500"></span>
+        </label>
+        <span class="ml-3">Nhận thông báo qua tin nhắn (SMS)</span>
+      </div>
+      <div class="flex items-center">
+        <input type="checkbox" id="email" class="toggle-checkbox hidden">
+        <label for="email" class="toggle-label flex items-center cursor-pointer">
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="ml-3">Nhận thông báo qua Email</span>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .toggle-checkbox:checked + .toggle-label .toggle-slider {
+    background-color: #3b82f6;
+  }
+  .toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+  .toggle-label .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 9999px;
+  }
+  .toggle-label .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 9999px;
+  }
+  .toggle-checkbox:checked + .toggle-label .toggle-slider:before {
+    transform: translateX(20px);
+  }
+</style>
+    <!-- Footer top -->
+    <div
+      class="standard-container w-full h-auto bg-[var(--footer)] flex justify-center items-center text-black"
+    >
+      <div
+        class="carousel-content w-[1024px] h-full grid grid-cols-3 gap-[20px] py-[40px]"
+      >
+        <div class="w-full flex flex-col justify-between">
+          <div class="logo mb-[30px]">
+            <img class="w-[199px] h-[61px]" src="./assets/img/logo.png" />
+          </div>
+
+          <div class="content text-white flex flex-col gap-[12px]">
+            <h1
+              class="w-[80px] text-[22px] font-medium border-b-[3px] pb-[3px]"
+            >
+              LIÊN HỆ
+            </h1>
+
+            <h2 class="text-[16px] font-bold">TT Hiến Máu Nhân Đạo</h2>
+
+            <p class="text-[14px]">
+              <i class="fa-solid fa-location-dot"></i>
+              466 Nguyễn Thị Minh Khai, Phường 2, Quận 3, Thành phố Hồ Chí Minh
+            </p>
+
+            <p class="text-[14px]">
+              <i class="fa-solid fa-location-dot"></i>
+              106 Thiên Phước, Phường 9, Tân Bình, Thành phố Hồ Chí Minh
+            </p>
+          </div>
+
+          <div class="content text-white flex flex-col gap-[12px] mt-[60px]">
+            <h2 class="text-[16px] font-bold">Bệnh Viện BTH</h2>
+
+            <p class="text-[14px]">
+              <i class="fa-solid fa-location-dot"></i>
+              118 Đ. Hồng Bàng, Phường 12, Quận 5, Thành phố Hồ Chí Minh
+            </p>
+
+            <p class="text-[14px]">
+              <i class="fa-solid fa-location-dot"></i>
+              24 Nguyễn Thị Diệu, Phường Võ Thị Sáu, Quận 3, Thành phố Hồ Chí
+              Minh
+            </p>
+          </div>
+
+          <div class="content text-white flex flex-col gap-[12px] mt-[60px]">
+            <h2 class="text-[16px] font-bold">TT truyền máu Chợ Rẫy</h2>
+
+            <p class="text-[14px]">
+              <i class="fa-solid fa-location-dot"></i>
+              56 Phạm Hữu Chí, Phường 12, Quận 5, Thành phố Hồ Chí Minh
+            </p>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col justify-between">
+          <div class="logo mb-[40px]"></div>
+
+          <div class="content text-white flex flex-col gap-[12px]">
+            <h2 class="text-[16px]">
+              <i class="fa-solid fa-phone"></i> Liên hệ giờ hành chính
+            </h2>
+
+            <a href="" class="text-[18px] font-bold underline">
+              028 3868 5509
+            </a>
+            <a href="" class="text-[18px] font-bold underline">
+              028 3868 5507
+            </a>
+          </div>
+
+          <div class="content text-white flex flex-col gap-[12px]">
+            <h2 class="text-[16px]">
+              <i class="fa-solid fa-phone"></i> Liên hệ giờ hành chính
+            </h2>
+
+            <a href="" class="text-[18px] font-bold underline">
+              028 39571342
+            </a>
+            <a href="" class="text-[18px] font-bold underline">
+              028 39557858
+            </a>
+          </div>
+
+          <div class="content text-white flex flex-col gap-[12px]">
+            <h2 class="text-[16px]">
+              <i class="fa-solid fa-phone"></i> Liên hệ giờ hành chính
+            </h2>
+
+            <a href="" class="text-[18px] font-bold underline">
+              028 39555885
+            </a>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col justify-between">
+          <div class="content text-white flex flex-col gap-[12px] mt-[91px]">
+            <h1
+              class="w-[90px] text-[22px] font-medium border-b-[3px] pb-[3px]"
+            >
+              HỖ TRỢ
+            </h1>
+
+            <h2 class="text-[16px] font-bold">Điều khoản sử dụng</h2>
+          </div>
+
+          <div
+            class="content text-white flex flex-col gap-[12px] mt-[60px] relative w-full"
+          >
+            <img src="./assets/img/bg.png" class="w-[410px] h-[173px]" />
+
+            <div
+              class="absolute h-full top-0 left-0 py-[30px] px-[45px] flex flex-col justify-between"
+            >
+              <p class="text-[18px] font-[600]">
+                Ứng dụng “Giọt máu vàng” đã có mặt trên:
+              </p>
+              <div class="flex justify-between items-center">
+                <img src="./assets/img/app-store.svg" class="w-[110px]" />
+                <img src="./assets/img/gg-play.svg" class="w-[110px]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white text-gray-500 p-4 mt-8">
+      <div
+        class="container mx-auto flex flex-wrap justify-center items-center"
+      >
+        <div class="flex space-x-4 mb-4 md:mb-0">
+          <img src="./assets/img/logo-hutech.png" alt="Logo 1" />
+        </div>
+      </div>
+      <p class="text-center mt-4">Đồ án lập trình Java</p>
+    </div>
+  </body>
+</html>
+chỉ sử dụng tailwinds
